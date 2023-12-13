@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clasificación de Sentimientos</title>
+    <!-- Agrega el enlace al archivo de estilo de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <!-- Custom styles for this template -->
+      <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+    
+
+<div class="container mt-4">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+        <h5 class="my-0 mr-md-auto font-weight-normal">AS Desarrollo Web</h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+          <a class="p-2 text-dark" href="#sentimientos">Sentimientos</a>
+          <a class="p-2 text-dark" href="#analizar">Analizar</a>
+          <a class="p-2 text-dark" href="#clasificaciones">Clasificaciones</a>
+          <a class="p-2 text-dark" href="#vaciar">Vaciar Base de Datos</a>
+        </nav>
+        <a class="btn btn-outline-primary" href="https://albertosaenz.com/" target="_blank">Contactar</a>
+    </div>
+
+    <div class="container-fluid">
+        <div class="jumbotron" id="first" style="background: url(https://cdn.pixabay.com/photo/2020/10/15/10/22/network-5656534_1280.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+        </div>
+    </div>
+
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4" id="sentimientos">Clasificación de Sentimientos</h1>
+        <p class="lead">La Inteligencia Artificial (IA) es un campo de estudio que busca desarrollar sistemas informáticos capaces de realizar tareas que requieren inteligencia humana. Dentro de la IA, las bibliotecas como Transformers y PyTorch desempeñan un papel crucial en el procesamiento del lenguaje natural. Transformers es una arquitectura de modelo que ha revolucionado el campo, especialmente en tareas de procesamiento de texto, al permitir la atención contextualizada. PyTorch, por otro lado, es un marco de aprendizaje profundo que facilita la implementación eficiente de modelos de IA, proporcionando herramientas flexibles y una comunidad activa.</p>
+        <p class="lead">En este contexto, la aplicación utiliza la potencia de Transformers y PyTorch para analizar el sentimiento en comentarios ingresados a través de un formulario. Cuando un usuario añade un comentario, el formulario utiliza modelos preentrenados de Transformers para procesar el texto y PyTorch para realizar inferencias. El resultado revela el sentimiento del comentario, proporcionando una experiencia interactiva que demuestra la aplicación práctica de la IA en la comprensión y evaluación de la información textual, un aspecto esencial en el avance de la Inteligencia Artificial.</p>
+    </div>
+</div>
+
+<div class="container mt-4">
+
+
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+            <h4 class="my-0 font-weight-normal" id="analizar">Analizar</h4>
+            </div>
+        <div class="card-body">
+          
+            <form method="post" class="mb-4">
+                <div class="form-group">
+                    <p class="lead">
+                    <label for="texto">Escribe el texto a analizar:</label>
+                    <input type="text" name="texto" class="form-control" required>
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-primary">Analizar Sentimiento</button>
+            </form>
+          
+        </div>
+        </div>
+
+        
+        
+
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal" id="clasificaciones">Últimas 10 Clasificaciones</h4>
+            </div>
+            <div class="card-body">
+              
+                <ul class="list-group">
+                    {% for clasificacion in clasificaciones %}
+                        <li class="list-group-item">
+                            {{ clasificacion[0] }} - Sentimiento:
+                            <strong>{{ clasificacion[2] }} ({{ clasificacion[1] }}%) </strong>
+                            {% if clasificacion[2] == "Muy negativo" %}
+                                😠 <!-- Emoji para "Muy negativo" -->
+                            {% elif clasificacion[2] == "Negativo" %}
+                                😢 <!-- Emoji para "Negativo" -->
+                            {% elif clasificacion[2] == "Neutral" %}
+                                😐 <!-- Emoji para "Neutral" -->
+                            {% elif clasificacion[2] == "Positivo" %}
+                                😊 <!-- Emoji para "Positivo" -->
+                            {% elif clasificacion[2] == "Muy positivo" %}
+                                😄 <!-- Emoji para "Muy positivo" -->
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+              
+            </div>
+          </div>
+
+          <div class="card mb-4 box-shadow">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal" id="vaciar">Vaciar Base de Datos</h4>
+            </div>
+            <div class="card-body">
+              
+                <form method="post" action="/vaciar_bd" class="mt-4">
+                    <button type="submit" class="btn btn-danger">Vaciar Base de Datos</button>
+                </form>
+              
+            </div>
+          </div>
+
+       
+        
+        
+</div>
+
+<div class="container mt-4">
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-12 col-md">
+        <a href="https://albertosaenz.com/" target="_blank"><img class="mb-2" src="https://albertosaenz.com/static/assets/img/favicon-32x32.png" alt="" width="24" height="24"></a>
+        <small class="d-block mb-3 text-muted">&copy; Alberto Sáenz 2023 - 2024</small>
+      </div>
+    </div>
+  </footer>
+</div>
+
+    <!-- Agrega el enlace al archivo de script de Bootstrap y a la biblioteca de jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
